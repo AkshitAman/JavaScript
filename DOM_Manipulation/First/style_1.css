@@ -1,0 +1,10 @@
+body{
+    background-color: #111111;
+    color: wheat;
+    text-align: center;
+}
+.highlight{
+    background-color: #c0f36e;
+    color: #111111;
+    font-weight: bold;
+}
