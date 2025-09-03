@@ -1,5 +1,5 @@
 function makeTea(typeOfTea) {
-  console.log(`Making ${typeOfTea}`);
+  return `Making ${typeOfTea}`;
 }
-let Tea = makeTea("green tea");
-console.log(Tea);
+let TeaOrder = makeTea("Green tea");
+console.log(TeaOrder);

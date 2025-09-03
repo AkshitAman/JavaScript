@@ -1,5 +1,8 @@
 document
   .getElementById("removeLastTask")
   .addEventListener("click", function () {
-    document.getElementById("taskList").removeChild(Task - 3);
+    let taskList=document.getElementById("taskList");
+    taskList.lastElementChild.remove();
   });
+
+
