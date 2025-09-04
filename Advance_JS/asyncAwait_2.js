@@ -1,8 +1,7 @@
 function fetchPostData() {
     return new Promise((resolve) => {
         setTimeout(() => {
-            resolve(console.log("Post Data Fetched.")
-            )
+            resolve("Post Data Fetched.")
         }, 2000);
     })
 }
@@ -10,18 +9,26 @@ function fetchPostData() {
 function fetchCommentData(){
     return new Promise((resolve) => {
         setTimeout(() => {
-            resolve(console.log("Comment Data Fetched.")
-            )
+            resolve("Comment Data Fetched.")
         }, 3000);
     })
 }
 
 async function getBlogData() {
     try {
-        const postData=await fetchPostData();
-        const commentData= await fetchCommentData();
-        console.log("Post Data Fetched Successfully");
-        console.log("Comment Data Fetched Successfully");
+        console.log("Fetching Blog Data.......");
+        
+        // const postData = await fetchPostData();
+        // const commentData = await fetchCommentData();
+
+        // Another way by using Promise All
+        const [postData,commentData] = await Promise.all([fetchPostData(),fetchCommentData()])
+        
+        console.log("Post Data Fetched");
+        console.log("Comment Data Fetched");
+
+        console.log("Fetched Successfully");
+        
     } catch (error) {
         console.log("Error fetching the Data");
     }
