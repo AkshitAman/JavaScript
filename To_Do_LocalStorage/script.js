@@ -1,15 +1,15 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {  //ensure the DOM is fully loaded before running the script
   const TodoInput = document.getElementById("todo-input");
   const AddTaskButton = document.getElementById("add-task-butn");
   const TodoList = document.getElementById("todo-list");
 
-  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];  // Convert the string back to the array
 
-  tasks.forEach((task) => renderTask(task));
+  tasks.forEach((task) => renderTask(task));  
 
   AddTaskButton.addEventListener("click", () => {
-    const taskText = TodoInput.value.trim();
-    if (taskText === "") return;
+    const taskText = TodoInput.value.trim();   //trim is used to remove spaces for the end and beginning of the string
+    if (taskText === "") return;    
 
     const newTask = {
       id: Date.now(),
@@ -17,10 +17,10 @@ document.addEventListener("DOMContentLoaded", () => {
       completed: false,
     };
 
-    tasks.push(newTask);
-    saveTasks();
+    tasks.push(newTask);   //Add the new task to the array
+    saveTasks();        // Save the task to the local storage
     renderTask(newTask);
-    TodoInput.value = ""; // for clearing input
+    TodoInput.value = ""; // clears the input box after adding the task
     console.log(tasks);
   });
 
@@ -34,23 +34,23 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
 
     li.addEventListener("click", (e) => {
-      if (e.target.tagName === "BUTTON") return;
-      task.completed = !task.completed;
-      li.classList.toggle("completed");
+      if (e.target.tagName === "BUTTON") return;    
+      task.completed = !task.completed; 
+      li.classList.toggle("completed"); 
       saveTasks();
     });
 
     li.querySelector("button").addEventListener("click", (e) => {
-      e.stopPropagation();
-      tasks = tasks.filter((t) => t.id !== task.id);
-      li.remove();
+      e.stopPropagation();  
+      tasks = tasks.filter((t) => t.id !== task.id);  //remo
+      li.remove(); //
       saveTasks();
     });
 
-    TodoList.appendChild(li);
+    TodoList.appendChild(li);  // Adds the new task to the list
   }
 
   function saveTasks() {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("tasks", JSON.stringify(tasks));  // convert the array to a string and save it to the local storage
   }
 });
