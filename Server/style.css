@@ -1,0 +1,10 @@
+body{
+    background-color: #303030;
+    color: antiquewhite;
+}
+h1{
+    display: flex;
+    align-items: centre;
+    justify-content: center;
+    height: 100vh;
+}
