@@ -7,8 +7,10 @@ const port = 3003;
 const server = http.createServer((req, res) => {
   const filePath = path.join(
     __dirname,
-    req.url === "/" ? "index.html" : "req.html"
+    req.url === "/" ? "index.html" : req.url
   ); // gives the access to your current directory..
+
+  console.log(filePath);
 
   const extName = String(path.extname(filePath)).toLowerCase();
 
@@ -21,13 +23,17 @@ const server = http.createServer((req, res) => {
 
   const contentType = mineTypes[extName] || "application/octet-stream";
 
-  fs.readFile(filePath, (err,content)=> {
+  fs.readFile(filePath, (err, content) => {
     if (err) {
-        
+      if (err.code === "ENOENT") {
+        res.writeHead(404, { "content-Type": contentType });
+        res.end("404: File Not Found");
+      }
     } else {
-        res.writeHead
+      res.writeHead(200, { "content-Type": contentType }); // for successfull response
+      res.end(content, "utf-8");
     }
-  })
+  });
 });
 
 server.listen(port, () => {
