@@ -23,3 +23,6 @@ setInterval(() => {
   const memoryUsage = (os.freemem() / os.totalmem()) * 100;
   logger.log(`Current Memory Usage: ${memoryUsage.toFixed(2)}`);
 }, 3000);
+
+logger.log("Application Started");
+logger.log("Application event occured");
